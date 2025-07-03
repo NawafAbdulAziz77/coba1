@@ -15,6 +15,12 @@ pipeline {
         stage('Run') {
             steps {
                 sh './gradlew bootRun &'
+                sh 'sleep 10'
+            }
+        }
+        stage('Test Endpoint') {
+            steps {
+                sh 'curl "http://localhost:8080/sum?a=1&b=2"'
             }
         }
     }
